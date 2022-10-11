@@ -26,8 +26,8 @@ public class CalcularComision {
 			for(int j=1; j<=12; j++) {
 				// Calcular meses del año
 				PercepcionEconomicaMensual calculoMensual = new PercepcionEconomicaMensual();
-				calculoMensual.setAnio(String.valueOf(anioInicio));
-				calculoMensual.setAnio_numero(anioInicio);
+				calculoMensual.setAnio(String.valueOf(i));
+				calculoMensual.setAnio_numero(i);
 				calculoMensual.setMes_numero(j);
 				calculoMensual=CalcularComisionMensual.calcularComisionMensual(listaMesesGlobal,calculoMensual, listaVentasGlobales);
 				listaMesesGlobal.add(calculoMensual);

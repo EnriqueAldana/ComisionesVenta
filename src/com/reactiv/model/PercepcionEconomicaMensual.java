@@ -65,12 +65,13 @@ public class PercepcionEconomicaMensual {
 	private Double comisionVta41_50 =0.0;
 	private Double comisionVta51_60 =0.0;
 	private Double comisionVta61_999 =0.0;
+	private Double comisionVtaFacturasPendienteDeCobro=0.00;
 	
 	public PercepcionEconomicaMensual() {
 		
 	}
 
-	StringBuffer imprimeDetalleComisionVenta() {
+	public StringBuffer imprimeDetalleComisionVenta() {
 		
 		StringBuffer sb = new StringBuffer("");
 		for(Venta comision: comisionPorCobranzaLista) {
@@ -81,7 +82,7 @@ public class PercepcionEconomicaMensual {
 		return sb;
 	}
 
-	String imprimePercepcionMensual() {
+	public String imprimePercepcionMensual() {
 		Double suma = miniCierre1_bono +miniCierre2_bono +miniCierre3_bono +miniCierre4_bono +
 						coberturaMensual+
 						comisionPorCobranza+
@@ -92,6 +93,15 @@ public class PercepcionEconomicaMensual {
 		return suma.toString();
 	}
 	
+	
+	public Double getComisionVtaFacturasPendienteDeCobro() {
+		return comisionVtaFacturasPendienteDeCobro;
+	}
+
+	public void setComisionVtaFacturasPendienteDeCobro(Double comisionVtaFacturasPendienteDeCobro) {
+		this.comisionVtaFacturasPendienteDeCobro = comisionVtaFacturasPendienteDeCobro;
+	}
+
 	public Double getComisionVta1_7() {
 		return comisionVta1_7;
 	}
@@ -512,6 +522,7 @@ public class PercepcionEconomicaMensual {
 				 "\n" + "Comisón pago de 41-50: " + comisionVta41_50+
 				 "\n" + "Comisón pago de 51-60: " + comisionVta51_60+
 				 "\n" + "Comisón pago de 61-999: " + comisionVta61_999+
+				 "\n" + "Comisón pago de pendientes x cobrar ultimo mesa razón del " + MatrizConfiguracion.BonoDiasCreditoPendienteXCobrar + " %: " + comisionVtaFacturasPendienteDeCobro+
 				 "\n"+"Detalle Ventas: "+ imprimeDetalleComisionVenta() +
 				 "\n"+"Bono trimestral: " + bonoTrimestral + 
 				 "\n"+"Bono anual : " + bonoAnual + "\n" +

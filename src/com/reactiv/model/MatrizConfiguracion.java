@@ -22,6 +22,9 @@ public class  MatrizConfiguracion {
 	// Cuotas de Ventas mensuales para el año por calcular, establecer doce valores en Pesos
 	public static Double[] cuotaDeVentasMensual2021=
 				{1000.00,2000.00,3000.00,4000.00,5000.0,6000.0,7000.0,8000.0,9000.0,10000.0,11000.0,4399299.0};
+	public static Double[] cuotaDeVentasMensual2022=
+		{1000.00,2000.00,3000.00,4000.00,5000.0,6000.0,7000.0,8000.0,9000.0,10000.0,11000.0,4399299.0};
+	
 	
 	public static Map<Integer,Double[]> cuotaDeVentasAnuales=  new HashMap<Integer, Double[]>();
 	
@@ -77,6 +80,7 @@ public class  MatrizConfiguracion {
 	public static int DiasCredito_40 = 40;
 	public static int DiasCredito_50 = 50;
 	public static int DiasCredito_60 = 60;
+	public static int DiasCredito_999 = 999;
 	
 	// Porcentaje
 	public static Double BonoDiasContado1_7= 2.0;
@@ -87,13 +91,16 @@ public class  MatrizConfiguracion {
 	public static Double BonoDiasCredito41_50=1.0;
 	public static Double BonoDiasCredito51_60=0.7;
 	public static Double BonoDiasCredito61_999=0.00;
+	public static Double BonoDiasCreditoPendienteXCobrar=1.00;
 	
 	
 	
 	public MatrizConfiguracion(){
 		
 		cuotaDeVentasAnuales.put(2021, cuotaDeVentasMensual2021);
+		cuotaDeVentasAnuales.put(2022, cuotaDeVentasMensual2022);
 		porcentajeMinimoMensualParaComisionar.put(2021,  porcentajeMinimoMensualParaComisionar2021);
+		miniCierres.put("12-2021", minicierreDiciembre2021);
 		miniCierres.put("12-2021", minicierreDiciembre2021);
 		
 	}

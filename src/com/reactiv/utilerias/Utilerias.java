@@ -10,7 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import com.opencsv.*;
 import com.reactiv.model.ComisionVenta;
@@ -93,9 +96,12 @@ public static  List<Venta>  comisionesDelMes(int mes,int anio, List<Venta> lista
 					}else if(diasPago>MatrizConfiguracion.DiasCredito_50 && diasPago <= MatrizConfiguracion.DiasCredito_60) {
 						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCredito51_60/100);
 						comisionPorciento = MatrizConfiguracion.BonoDiasCredito51_60;	
-					}else if(diasPago>MatrizConfiguracion.DiasCredito_60) {
+					}else if(diasPago>MatrizConfiguracion.DiasCredito_60 && diasPago <= MatrizConfiguracion.DiasCredito_999) {
 						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCredito61_999/100);
 						comisionPorciento = MatrizConfiguracion.BonoDiasCredito61_999;	
+					}else if(diasPago> MatrizConfiguracion.DiasCredito_999) {
+						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCreditoPendienteXCobrar/100);
+						comisionPorciento = MatrizConfiguracion.BonoDiasCreditoPendienteXCobrar;	
 					}
 					venta.setDiasPago(diasPago);
 					venta.setComisionPorcentaje(comisionPorciento);
@@ -186,7 +192,9 @@ public static Double ventasAUnaFechaDelMes(LocalDate fecha, List<Venta> listaVen
 		private LocalDate fechaPago= LocalDate.now();
 		*/
 		try {
-			String archCSV = "/Users/enrique/DiscoDeEnrique/2022/Proyectos/Reactiv/Diciembre2021conPagos.csv";
+			//String archCSV = "/Users/enrique/DiscoDeEnrique/2022/Proyectos/Reactiv/Diciembre2021conPagos.csv";
+			String archCSV = "/Users/enrique/DiscoDeEnrique/2022/Proyectos/Reactiv/DatosReactivCSV/Diciembre 2021_8Octubre2022_DepuradoCompleto.csv";
+			
 			CSVReader csvReader = new CSVReader(new FileReader(archCSV));
 			String[] fila = null;
 			
@@ -204,6 +212,10 @@ public static Double ventasAUnaFechaDelMes(LocalDate fecha, List<Venta> listaVen
 						if(!fila[5].equals("")) {
 							fechaPago =fila[5].split("-");
 						}else {
+							// Si no se ha fijado fecha de pago es por que
+							// A ) No se ha pagado en 60 dias o mas
+							// B) es el mes actual
+							
 							// Poner una fecha lejana mayor a 60 dias
 							fechaPago[0] = "31";
 							fechaPago[1] = "dic";
@@ -294,4 +306,57 @@ public static Double ventasAUnaFechaDelMes(LocalDate fecha, List<Venta> listaVen
 		return fechaIniYFin;
 		
 	}
+	
+	
+	/*
+	 * MAnejo de archivo de salida
+	 * 
+	 */
+	
+	public static boolean createNewFile(String path,String filePAthAndName) {
+		
+		boolean ret=false;
+	    try {
+	        File myObj = new File(path,filePAthAndName);
+	        if (myObj.createNewFile()) {
+	          System.out.println("\n"+"Archivo creado: " + myObj.getName()+"\n");
+	        } else {
+	          System.out.println("\n"+"Archivo existente.");
+	        }
+	      } catch (IOException e) {
+	        System.out.println("\n"+"Error al crear archivo." + filePAthAndName);
+	        e.printStackTrace();
+	      }
+		return ret;
+		
+		
+		
+	}
+	
+	public static void escribeAlArchivo(String path,String archivo,String lineaXEscribir) {
+		
+		
+		FileWriter fileWriter = null;
+		try {
+			fileWriter = new FileWriter(path + File.separator + archivo,true);
+			//inherited method from java.io.OutputStreamWriter 
+			fileWriter.write(lineaXEscribir);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (fileWriter != null) {
+					fileWriter.flush();
+					fileWriter.close();					
+				}
+			} catch (IOException e) {
+				 System.out.println("Un error ha ocurrido al escribir en el archivo: " + archivo);
+				e.printStackTrace();
+			}
+		}
+	
+	}
+	
+	
 }
