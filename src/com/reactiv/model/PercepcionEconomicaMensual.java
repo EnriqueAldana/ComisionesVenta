@@ -3,6 +3,8 @@ package com.reactiv.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.reactiv.utilerias.Utilerias;
+
 public class PercepcionEconomicaMensual {
 	
 	private String mes="";
@@ -54,6 +56,16 @@ public class PercepcionEconomicaMensual {
 	
 	private String mensaje= "";
 	
+	
+	private Double comisionVta1_7=0.0;
+	private Double comisionVta8_15=0.0;
+	private Double comisionVta16_21 =0.0;
+	private Double comisionVta22_30 =0.0;
+	private Double comisionVta31_40 =0.0;
+	private Double comisionVta41_50 =0.0;
+	private Double comisionVta51_60 =0.0;
+	private Double comisionVta61_999 =0.0;
+	
 	public PercepcionEconomicaMensual() {
 		
 	}
@@ -67,6 +79,81 @@ public class PercepcionEconomicaMensual {
 		}
 		
 		return sb;
+	}
+
+	String imprimePercepcionMensual() {
+		Double suma = miniCierre1_bono +miniCierre2_bono +miniCierre3_bono +miniCierre4_bono +
+						coberturaMensual+
+						comisionPorCobranza+
+						bonoTrimestral +
+						bonoAnual
+						;
+		
+		return suma.toString();
+	}
+	
+	public Double getComisionVta1_7() {
+		return comisionVta1_7;
+	}
+
+	public void setComisionVta1_7(Double comisionVta1_7) {
+		this.comisionVta1_7 = comisionVta1_7;
+	}
+
+	public Double getComisionVta8_15() {
+		return comisionVta8_15;
+	}
+
+	public void setComisionVta8_15(Double comisionVta8_15) {
+		this.comisionVta8_15 = comisionVta8_15;
+	}
+
+	public Double getComisionVta16_21() {
+		return comisionVta16_21;
+	}
+
+	public void setComisionVta16_21(Double comisionVta16_21) {
+		this.comisionVta16_21 = comisionVta16_21;
+	}
+
+	public Double getComisionVta22_30() {
+		return comisionVta22_30;
+	}
+
+	public void setComisionVta22_30(Double comisionVta22_30) {
+		this.comisionVta22_30 = comisionVta22_30;
+	}
+
+	public Double getComisionVta31_40() {
+		return comisionVta31_40;
+	}
+
+	public void setComisionVta31_40(Double comisionVta31_40) {
+		this.comisionVta31_40 = comisionVta31_40;
+	}
+
+	public Double getComisionVta41_50() {
+		return comisionVta41_50;
+	}
+
+	public void setComisionVta41_50(Double comisionVta41_50) {
+		this.comisionVta41_50 = comisionVta41_50;
+	}
+
+	public Double getComisionVta51_60() {
+		return comisionVta51_60;
+	}
+
+	public void setComisionVta51_60(Double comisionVta51_60) {
+		this.comisionVta51_60 = comisionVta51_60;
+	}
+
+	public Double getComisionVta61_999() {
+		return comisionVta61_999;
+	}
+
+	public void setComisionVta61_999(Double comisionVta61_999) {
+		this.comisionVta61_999 = comisionVta61_999;
 	}
 
 	public List<Venta> getComisionPorCobranzaLista() {
@@ -414,15 +501,28 @@ public class PercepcionEconomicaMensual {
 				 "\n"+"Cobertura de 3 cuotas de mini cierre: "+ miniCierre3_4_bono + 
 				 "\n"+
 				 "\n"+"Bono por cobertura mensual minima: " + coberturaMensual + 
+		         "\n" + 
 				 "\n"+"Comisiones por cobranza: "+ comisionPorCobranza +
+				 "\n"+
+				 "\n" + "Comisón pago de contado: " + comisionVta1_7+
+				 "\n" + "Comisón pago de 8-15: " + comisionVta8_15+
+				 "\n" + "Comisón pago de 16-21: " + comisionVta16_21+
+				 "\n" + "Comisón pago de 22-30: " + comisionVta22_30+
+				 "\n" + "Comisón pago de 31-40: " + comisionVta31_40+
+				 "\n" + "Comisón pago de 41-50: " + comisionVta41_50+
+				 "\n" + "Comisón pago de 51-60: " + comisionVta51_60+
+				 "\n" + "Comisón pago de 61-999: " + comisionVta61_999+
 				 "\n"+"Detalle Ventas: "+ imprimeDetalleComisionVenta() +
 				 "\n"+"Bono trimestral: " + bonoTrimestral + 
-				 "\n"+"Bono anual : " + bonoAnual + "\n";
+				 "\n"+"Bono anual : " + bonoAnual + "\n" +
+				 "\n"+ 
+				 "\n"+
+				 "Percepcion mensual:"+ imprimePercepcionMensual()
+				 
+				 
+				 ;
 	}
 
-
-	
-	
 	
 	
 	

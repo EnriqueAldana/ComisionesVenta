@@ -71,12 +71,12 @@ public class  MatrizConfiguracion {
 	public static Double CoberturaAnual_115= 30000.0;
 	
 	public static int DiasCredito_7 = 7;
-	public static int DiasCredito_15 = 8;
-	public static int DiasCredito_21 = 7;
-	public static int DiasCredito_30 = 7;
-	public static int DiasCredito_40 = 7;
-	public static int DiasCredito_50 = 7;
-	public static int DiasCredito_60 = 7;
+	public static int DiasCredito_15 = 15;
+	public static int DiasCredito_21 = 21;
+	public static int DiasCredito_30 = 30;
+	public static int DiasCredito_40 = 40;
+	public static int DiasCredito_50 = 50;
+	public static int DiasCredito_60 = 60;
 	
 	// Porcentaje
 	public static Double BonoDiasContado1_7= 2.0;
@@ -86,7 +86,7 @@ public class  MatrizConfiguracion {
 	public static Double BonoDiasCredito31_40=1.30;
 	public static Double BonoDiasCredito41_50=1.0;
 	public static Double BonoDiasCredito51_60=0.7;
-	public static Double BonoDiasCredito60_999=0.00;
+	public static Double BonoDiasCredito61_999=0.00;
 	
 	
 	

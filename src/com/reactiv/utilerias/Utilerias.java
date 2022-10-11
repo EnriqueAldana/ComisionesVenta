@@ -44,6 +44,20 @@ public static int diasEntre2Fechas(LocalDate fechaIni, LocalDate fechaFin) {
 	return i;
 	
 }
+
+public static  Double comisionesXCobranzaXMes(int diasIni, int diasFin,List<Venta> listaVentas) {
+	
+	Double suma=0.0;
+	for(Venta venta:listaVentas) {
+		
+		if(venta.getDiasPago()>=diasIni && venta.getDiasPago()<= diasFin) {
+			suma= suma + venta.getComisionMonto();
+		}
+	}
+	
+	return suma;
+	
+}
 public static  List<Venta>  comisionesDelMes(int mes,int anio, List<Venta> listaVentas) {
 		
 	List<Venta> ventas= new ArrayList<Venta>();
@@ -80,8 +94,8 @@ public static  List<Venta>  comisionesDelMes(int mes,int anio, List<Venta> lista
 						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCredito51_60/100);
 						comisionPorciento = MatrizConfiguracion.BonoDiasCredito51_60;	
 					}else if(diasPago>MatrizConfiguracion.DiasCredito_60) {
-						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCredito60_999/100);
-						comisionPorciento = MatrizConfiguracion.BonoDiasCredito60_999;	
+						comisionMonto = venta.getMonto() * (MatrizConfiguracion.BonoDiasCredito61_999/100);
+						comisionPorciento = MatrizConfiguracion.BonoDiasCredito61_999;	
 					}
 					venta.setDiasPago(diasPago);
 					venta.setComisionPorcentaje(comisionPorciento);

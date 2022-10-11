@@ -149,6 +149,29 @@ public class CalcularComisionMensual {
 		// Regla de negocio.
 		mes.setComisionPorCobranzaLista(listaComisionesXCobranzaMes);
 		
+		// Ordenar por dias de pago.
+		Double comisionVta1_7 = Utilerias.comisionesXCobranzaXMes(-999, 7, listaComisionesXCobranzaMes);
+		Double comisionVta8_15 = Utilerias.comisionesXCobranzaXMes(8, 15, listaComisionesXCobranzaMes);
+		Double comisionVta16_21 = Utilerias.comisionesXCobranzaXMes(16, 21, listaComisionesXCobranzaMes);
+		Double comisionVta22_30 = Utilerias.comisionesXCobranzaXMes(22, 30, listaComisionesXCobranzaMes);
+		Double comisionVta31_40 = Utilerias.comisionesXCobranzaXMes(31, 40, listaComisionesXCobranzaMes);
+		Double comisionVta41_50 = Utilerias.comisionesXCobranzaXMes(41, 50, listaComisionesXCobranzaMes);
+		Double comisionVta51_60 = Utilerias.comisionesXCobranzaXMes(51, 60, listaComisionesXCobranzaMes);
+		Double comisionVta61_999 = Utilerias.comisionesXCobranzaXMes(61, 999, listaComisionesXCobranzaMes);
+		
+		Double comisionVtaMes = comisionVta1_7 + comisionVta8_15 +comisionVta16_21 +
+								comisionVta22_30 + comisionVta31_40 + comisionVta41_50 +
+								comisionVta51_60+comisionVta61_999;
+		mes.setComisionPorCobranza(comisionVtaMes);
+		mes.setComisionVta1_7(comisionVta1_7);
+		mes.setComisionVta8_15(comisionVta8_15);
+		mes.setComisionVta16_21(comisionVta16_21);
+		mes.setComisionVta22_30(comisionVta22_30);
+		mes.setComisionVta31_40(comisionVta31_40);
+		mes.setComisionVta41_50(comisionVta41_50);
+		mes.setComisionVta51_60(comisionVta51_60);
+		mes.setComisionVta61_999(comisionVta61_999);
+		
 		
 		// Fijar bono trimestral. Si en el trimestre se cubrio se asigna un bono
 		
